@@ -35,7 +35,7 @@ public class GetHTMLByURL {
                 //5.获取响应内容
                 HttpEntity httpEntity = response.getEntity();
                 html = EntityUtils.toString(httpEntity, "utf-8");
-                System.out.println(html);
+//                System.out.println(html);
             } else {
                 //如果返回状态不是200，比如404（页面不存在）等，根据情况做处理，这里略
                 System.out.println("返回状态是:" + response.getStatusLine().getStatusCode());

@@ -1,3 +1,5 @@
+package utils;
+
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpStatus;
 import org.apache.http.client.ClientProtocolException;
@@ -18,6 +20,7 @@ import java.io.IOException;
 public class GetHTMLByURL {
 
     public static String getHTML(String url){
+        System.out.println(url);
         String html=null;
         //1.生成httpclient，相当于该打开一个浏览器
         CloseableHttpClient httpClient = HttpClients.createDefault();
@@ -32,6 +35,7 @@ public class GetHTMLByURL {
                 //5.获取响应内容
                 HttpEntity httpEntity = response.getEntity();
                 html = EntityUtils.toString(httpEntity, "utf-8");
+                System.out.println(html);
             } else {
                 //如果返回状态不是200，比如404（页面不存在）等，根据情况做处理，这里略
                 System.out.println("返回状态是:" + response.getStatusLine().getStatusCode());

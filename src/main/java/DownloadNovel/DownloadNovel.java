@@ -2,6 +2,9 @@ package DownloadNovel;
 
 import utils.GetHTMLByURL;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * @author XUAN
  * @date 2020/9/24 - 23:17
@@ -13,12 +16,12 @@ public abstract class DownloadNovel {
 
     String firstPageURL;
     boolean isEnd;
-    String website;
+    private String website;
 
-    DownloadNovel(String firstPageURL, String website){
+    DownloadNovel(String firstPageURL){
         setFirstPageURL(firstPageURL);
         setEnd(false);
-        setWebsite(website);
+        setWebsite(firstPageURL);
     }
 
     public void getNovelHTMLPages(String saveDir){
@@ -57,7 +60,15 @@ public abstract class DownloadNovel {
         this.firstPageURL = firstPageURL;
     }
 
-    public void setWebsite(String website) {
-        this.website = website;
+    private void setWebsite(String firstPageURL) {
+        Pattern pWebsite = Pattern.compile("(https?|ftp|file)://[^/]+");
+        Matcher mFirst = pWebsite.matcher(firstPageURL);
+        if (mFirst.find()) {
+            this.website = mFirst.group();
+        }
+    }
+
+    public String getWebsite() {
+        return website;
     }
 }

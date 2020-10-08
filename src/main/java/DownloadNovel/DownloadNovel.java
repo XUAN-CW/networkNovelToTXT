@@ -61,7 +61,7 @@ public abstract class DownloadNovel {
     }
 
     private void setWebsite(String firstPageURL) {
-        Pattern pWebsite = Pattern.compile("https://[^/]+");
+        Pattern pWebsite = Pattern.compile("((https)|(http))://[^/]+");
         Matcher mFirst = pWebsite.matcher(firstPageURL);
         if (mFirst.find()) {
             this.website = mFirst.group();
